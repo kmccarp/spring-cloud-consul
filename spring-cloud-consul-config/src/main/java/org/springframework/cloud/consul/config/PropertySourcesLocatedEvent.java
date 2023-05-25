@@ -25,6 +25,8 @@ import org.springframework.context.ApplicationEvent;
  */
 public class PropertySourcesLocatedEvent extends ApplicationEvent {
 
+	private static final long serialVersionUID = 1;
+
 	private final LinkedHashMap<String, Long> contextsToIndexes;
 
 	/**

@@ -49,7 +49,7 @@ public class ConsulConfigServerBootstrapperTests {
 							.get(ConfigServerInstanceProvider.Function.class);
 					assertThat(providerFn.apply("id"))
 							.as("ConfigServerInstanceProvider.Function should return empty list")
-							.isEqualTo(Collections.EMPTY_LIST);
+							.isEqualTo(Collections.emptyList());
 				})).run().close();
 	}
 
@@ -63,7 +63,7 @@ public class ConsulConfigServerBootstrapperTests {
 							.get(ConfigServerInstanceProvider.Function.class);
 					assertThat(providerFn.apply("id"))
 							.as("ConfigServerInstanceProvider.Function should return empty list")
-							.isEqualTo(Collections.EMPTY_LIST);
+							.isEqualTo(Collections.emptyList());
 				})).run().close();
 	}
 
@@ -77,7 +77,7 @@ public class ConsulConfigServerBootstrapperTests {
 							.get(ConfigServerInstanceProvider.Function.class);
 					assertThat(providerFn.apply("id"))
 							.as("ConfigServerInstanceProvider.Function should return empty list")
-							.isEqualTo(Collections.EMPTY_LIST);
+							.isEqualTo(Collections.emptyList());
 				})).run().close();
 	}
 
@@ -114,7 +114,7 @@ public class ConsulConfigServerBootstrapperTests {
 
 	static class BindHandlerBootstrapper implements BootstrapRegistryInitializer {
 
-		private int onSuccessCount = 0;
+		private int onSuccessCount;
 
 		@Override
 		public void initialize(BootstrapRegistry registry) {

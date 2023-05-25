@@ -37,12 +37,12 @@ import static org.mockito.Mockito.mock;
  */
 class ConsulHeartbeatAutoConfigurationTests {
 
-	private ApplicationContextRunner appContextRunner = new ApplicationContextRunner()
-			.withConfiguration(AutoConfigurations.of(ConsulHeartbeatAutoConfiguration.class))
-			.withBean(ConsulClient.class, () -> mock(ConsulClient.class))
-			.withBean(HealthEndpoint.class, () -> mock(HealthEndpoint.class))
-			.withBean(ConsulDiscoveryProperties.class, () -> mock(ConsulDiscoveryProperties.class))
-			.withPropertyValues("spring.cloud.consul.discovery.heartbeat.enabled=true");
+	private final ApplicationContextRunner appContextRunner = new ApplicationContextRunner()
+.withConfiguration(AutoConfigurations.of(ConsulHeartbeatAutoConfiguration.class))
+.withBean(ConsulClient.class, () -> mock(ConsulClient.class))
+.withBean(HealthEndpoint.class, () -> mock(HealthEndpoint.class))
+.withBean(ConsulDiscoveryProperties.class, () -> mock(ConsulDiscoveryProperties.class))
+.withPropertyValues("spring.cloud.consul.discovery.heartbeat.enabled=true");
 
 	@Test
 	void heartbeatEnabled() {

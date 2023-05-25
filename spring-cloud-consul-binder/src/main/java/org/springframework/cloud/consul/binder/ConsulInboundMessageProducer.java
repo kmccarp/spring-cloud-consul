@@ -45,20 +45,14 @@ public class ConsulInboundMessageProducer extends MessageProducerSupport {
 
 	private final Runnable eventsRunnable;
 
-	private EventService eventService;
+	private final EventService eventService;
 
 	private ScheduledFuture<?> eventsHandle;
 
 	public ConsulInboundMessageProducer(EventService eventService) {
 		this.eventService = eventService;
 		this.scheduler = Executors.newScheduledThreadPool(1);
-		this.eventsRunnable = new Runnable() {
-
-			@Override
-			public void run() {
-				getEvents();
-			}
-		};
+		this.eventsRunnable = this::getEvents;
 	}
 
 	// link eventService to sendMessage
