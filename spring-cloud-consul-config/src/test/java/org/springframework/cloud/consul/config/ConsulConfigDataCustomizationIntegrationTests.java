@@ -69,26 +69,26 @@ public class ConsulConfigDataCustomizationIntegrationTests {
 		application.addBootstrapRegistryInitializer(bindHandlerBootstrapper);
 		application.addBootstrapRegistryInitializer(ConsulBootstrapper.fromConsulProperties(TestConsulClient::new));
 		application.addBootstrapRegistryInitializer(
-				registry -> registry.register(ConsulBootstrapper.LoaderInterceptor.class, context1 -> loadContext -> {
-					ConfigData configData = loadContext.getInvocation().apply(loadContext.getLoaderContext(),
-							loadContext.getResource());
-					assertThat(configData).as("ConfigData was null for location %s", loadContext.getResource())
-							.isNotNull();
-					assertThat(configData.getPropertySources()).hasSize(1);
-					PropertySource<?> propertySource = configData.getPropertySources().iterator().next();
-					ConfigData.Options options = configData.getOptions(propertySource);
-					assertThat(options).as("ConfigData.options was null for location %s property source %s",
-							loadContext.getResource(), propertySource.getName()).isNotNull();
-					assertThat(options.contains(ConfigData.Option.IGNORE_IMPORTS)).isTrue();
-					assertThat(options.contains(ConfigData.Option.IGNORE_PROFILES)).isTrue();
-					boolean hasProfile = StringUtils.hasText(loadContext.getResource().getProfile());
-					assertThat(options.contains(ConfigData.Option.PROFILE_SPECIFIC)).isEqualTo(hasProfile);
-					return configData;
-				}));
+	registry -> registry.register(ConsulBootstrapper.LoaderInterceptor.class, context1 -> loadContext -> {
+		ConfigData configData = loadContext.getInvocation().apply(loadContext.getLoaderContext(),
+	loadContext.getResource());
+		assertThat(configData).as("ConfigData was null for location %s", loadContext.getResource())
+	.isNotNull();
+		assertThat(configData.getPropertySources()).hasSize(1);
+		PropertySource<?> propertySource = configData.getPropertySources().iterator().next();
+		ConfigData.Options options = configData.getOptions(propertySource);
+		assertThat(options).as("ConfigData.options was null for location %s property source %s",
+	loadContext.getResource(), propertySource.getName()).isNotNull();
+		assertThat(options.contains(ConfigData.Option.IGNORE_IMPORTS)).isTrue();
+		assertThat(options.contains(ConfigData.Option.IGNORE_PROFILES)).isTrue();
+		boolean hasProfile = StringUtils.hasText(loadContext.getResource().getProfile());
+		assertThat(options.contains(ConfigData.Option.PROFILE_SPECIFIC)).isEqualTo(hasProfile);
+		return configData;
+	}));
 		context = application.run("--spring.application.name=" + APP_NAME,
-				"--spring.config.import=consul:" + ConsulTestcontainers.getHost() + ":"
-						+ ConsulTestcontainers.getPort(),
-				"--spring.cloud.consul.config.prefixes=" + ROOT, "--spring.cloud.consul.config.watch.delay=10");
+	"--spring.config.import=consul:" + ConsulTestcontainers.getHost() + ":"
++ ConsulTestcontainers.getPort(),
+	"--spring.cloud.consul.config.prefixes=" + ROOT, "--spring.cloud.consul.config.watch.delay=10");
 
 	}
 
@@ -129,7 +129,7 @@ public class ConsulConfigDataCustomizationIntegrationTests {
 			registry.register(BindHandler.class, context -> new BindHandler() {
 				@Override
 				public Object onSuccess(ConfigurationPropertyName name, Bindable<?> target, BindContext context,
-						Object result) {
+			Object result) {
 					onSuccessCount++;
 					return result;
 				}

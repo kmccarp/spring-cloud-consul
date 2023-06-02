@@ -42,7 +42,7 @@ public class ActuatorHealthApplicationStatusProvider implements ApplicationStatu
 	private HeartbeatProperties heartbeatProperties;
 
 	public ActuatorHealthApplicationStatusProvider(HealthEndpoint healthEndpoint,
-			HeartbeatProperties heartbeatProperties) {
+HeartbeatProperties heartbeatProperties) {
 		this.healthEndpoint = healthEndpoint;
 		this.heartbeatProperties = heartbeatProperties;
 	}
@@ -63,9 +63,9 @@ public class ActuatorHealthApplicationStatusProvider implements ApplicationStatu
 	@Override
 	public CheckStatus currentStatus() {
 		String healthGroup = heartbeatProperties.getActuatorHealthGroup();
-		String[] path = healthGroup == null ? new String[0] : new String[] { healthGroup };
+		String[] path = healthGroup == null ? new String[0] : new String[]{healthGroup};
 		return Optional.ofNullable(healthEndpoint.healthForPath(path)).map(HealthComponent::getStatus)
-				.map(this::healthStatusToCheckStatus).orElse(CheckStatus.UNKNOWN);
+	.map(this::healthStatusToCheckStatus).orElse(CheckStatus.UNKNOWN);
 	}
 
 	private CheckStatus healthStatusToCheckStatus(Status healthStatus) {

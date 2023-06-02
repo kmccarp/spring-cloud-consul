@@ -44,9 +44,9 @@ public class ConsulConfigDataApplicationTests {
 
 		SpringApplication application = new SpringApplication(ConsulConfigDataApplication.class);
 		context = application.run("--spring.application.name=" + APP_NAME,
-				"--spring.config.import=optional:consul:" + ConsulTestcontainers.getHost() + ":"
-						+ ConsulTestcontainers.getPort(),
-				"--spring.cloud.consul.config.prefix=" + ROOT, "--spring.cloud.consul.config.watch.delay=10");
+	"--spring.config.import=optional:consul:" + ConsulTestcontainers.getHost() + ":"
++ ConsulTestcontainers.getPort(),
+	"--spring.cloud.consul.config.prefix=" + ROOT, "--spring.cloud.consul.config.watch.delay=10");
 
 	}
 

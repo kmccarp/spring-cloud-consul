@@ -47,7 +47,7 @@ public class ConsulHealthIndicator extends AbstractHealthIndicator {
 		builder.up().withDetail("leader", leaderStatus.getValue());
 		if (properties.isIncludeServicesQuery()) {
 			final Response<Map<String, List<String>>> services = this.consul.getCatalogServices(
-					CatalogServicesRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
+		CatalogServicesRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
 			builder.withDetail("services", services.getValue());
 		}
 	}

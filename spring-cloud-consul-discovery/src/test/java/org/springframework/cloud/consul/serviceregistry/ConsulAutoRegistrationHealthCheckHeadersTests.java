@@ -39,10 +39,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Lomesh Patel
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoRegistrationHealthCheckHeadersTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-DiscoveryHealthCheckTlsSkipVerify",
-				"spring.cloud.consul.discovery.health-check-headers.X-Config-Token=ACCESSTOKEN" },
-		webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes = ConsulAutoRegistrationHealthCheckHeadersTests.TestConfig.class,properties = {"spring.application.name=myTestService-DiscoveryHealthCheckTlsSkipVerify",
+				"spring.cloud.consul.discovery.health-check-headers.X-Config-Token=ACCESSTOKEN"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoRegistrationHealthCheckHeadersTests {
 
@@ -62,15 +60,15 @@ public class ConsulAutoRegistrationHealthCheckHeadersTests {
 		assertThat(check.getHeader()).as("header is null").isNotNull();
 		assertThat(check.getHeader()).as("header is empty").isNotEmpty();
 		assertThat(check.getHeader().get("X-Config-Token").get(0)).as("expected header value not found")
-				.isEqualTo("ACCESSTOKEN");
+	.isEqualTo("ACCESSTOKEN");
 
 		// unable to call consul api to get health check details
 	}
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

@@ -132,8 +132,8 @@ public class HeartbeatProperties {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this).append("enabled", this.enabled).append("ttl", this.ttl)
-				.append("intervalRatio", this.intervalRatio).append("useActuatorHealth", this.useActuatorHealth)
-				.append("healthGroup", this.actuatorHealthGroup).toString();
+	.append("intervalRatio", this.intervalRatio).append("useActuatorHealth", this.useActuatorHealth)
+	.append("healthGroup", this.actuatorHealthGroup).toString();
 	}
 
 }

@@ -66,7 +66,7 @@ class ActuatorHealthApplicationStatusProviderTests {
 
 	static Stream<Arguments> currentCheckStatusBasedOnHealthStatusArgs() {
 		return Stream.of(arguments(UP, Check.CheckStatus.PASSING), arguments(DOWN, Check.CheckStatus.CRITICAL),
-				arguments(OUT_OF_SERVICE, Check.CheckStatus.CRITICAL), arguments(UNKNOWN, Check.CheckStatus.UNKNOWN));
+	arguments(OUT_OF_SERVICE, Check.CheckStatus.CRITICAL), arguments(UNKNOWN, Check.CheckStatus.UNKNOWN));
 	}
 
 	@DisplayName("currentStatus() tests")
@@ -84,9 +84,9 @@ class ActuatorHealthApplicationStatusProviderTests {
 	void currentStatusUsesHealthGroupIfSpecified() {
 		when(heartbeatProperties.getActuatorHealthGroup()).thenReturn("5150");
 		when(healthComponent.getStatus()).thenReturn(OUT_OF_SERVICE);
-		when(healthEndpoint.healthForPath(new String[] { "5150" })).thenReturn(healthComponent);
+		when(healthEndpoint.healthForPath(new String[]{"5150"})).thenReturn(healthComponent);
 		assertThat(applicationStatusProvider.currentStatus()).isEqualTo(Check.CheckStatus.CRITICAL);
-		verify(healthEndpoint).healthForPath(new String[] { "5150" });
+		verify(healthEndpoint).healthForPath(new String[]{"5150"});
 		verify(healthComponent).getStatus();
 	}
 

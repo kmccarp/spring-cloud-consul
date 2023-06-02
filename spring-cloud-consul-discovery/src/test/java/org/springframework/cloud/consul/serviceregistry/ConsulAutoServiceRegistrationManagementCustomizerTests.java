@@ -43,12 +43,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Alexey Savchuk (devpreview)
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-		classes = { ConsulAutoServiceRegistrationManagementCustomizerTests.TestConfig.class,
-				ConsulAutoServiceRegistrationManagementCustomizerTests.ManagementConfig.class },
-		properties = { "spring.application.name=myTestService-SS",
-				"spring.cloud.consul.discovery.registerHealthCheck=false", "management.server.port=4453" },
-		webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes = {ConsulAutoServiceRegistrationManagementCustomizerTests.TestConfig.class,
+				ConsulAutoServiceRegistrationManagementCustomizerTests.ManagementConfig.class},properties = {"spring.application.name=myTestService-SS",
+				"spring.cloud.consul.discovery.registerHealthCheck=false", "management.server.port=4453"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationManagementCustomizerTests {
 
@@ -89,7 +86,7 @@ public class ConsulAutoServiceRegistrationManagementCustomizerTests {
 			NewService.Check check = new NewService.Check();
 			check.setTtl(ttl);
 			List<NewService.Check> checks = managementService.getChecks() != null
-					? new ArrayList<>(managementService.getChecks()) : new ArrayList<>();
+		? new ArrayList<>(managementService.getChecks()) : new ArrayList<>();
 			checks.add(check);
 			managementRegistration.getService().setChecks(checks);
 		}
@@ -98,8 +95,8 @@ public class ConsulAutoServiceRegistrationManagementCustomizerTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

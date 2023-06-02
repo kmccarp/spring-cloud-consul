@@ -44,12 +44,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Dmitry Zhikharev (jihor)
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationManagementDisabledServiceTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-NM",
+@SpringBootTest(classes = ConsulAutoServiceRegistrationManagementDisabledServiceTests.TestConfig.class,properties = {"spring.application.name=myTestService-NM",
 				"spring.cloud.consul.discovery.instanceId=myTestService1-NM",
 				"spring.cloud.service-registry.auto-registration.register-management=false",
-				"spring.cloud.consul.discovery.managementPort=4453", "management.port=0" },
-		webEnvironment = RANDOM_PORT)
+				"spring.cloud.consul.discovery.managementPort=4453", "management.port=0"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationManagementDisabledServiceTests {
 
@@ -74,14 +72,14 @@ public class ConsulAutoServiceRegistrationManagementDisabledServiceTests {
 		assertThat(service.getService()).as("service name was wrong").isEqualTo("myTestService-NM");
 		assertThat(ObjectUtils.isEmpty(service.getAddress())).as("service address must not be empty").isFalse();
 		assertThat(service.getAddress()).as("service address must equals hostname from discovery properties")
-				.isEqualTo(this.discoveryProperties.getHostname());
+	.isEqualTo(this.discoveryProperties.getHostname());
 
 	}
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

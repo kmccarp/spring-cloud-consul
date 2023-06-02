@@ -38,11 +38,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Niko Tung
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoRegistrationCheckTtlDeregisterCriticalServiceTests.TestConfig.class,
-		properties = { "spring.application.name=myConsulServiceRegistryHealthCheckTtlDeregisterCriticalServiceAfter-N",
+@SpringBootTest(classes = ConsulAutoRegistrationCheckTtlDeregisterCriticalServiceTests.TestConfig.class,properties = {"spring.application.name=myConsulServiceRegistryHealthCheckTtlDeregisterCriticalServiceAfter-N",
 				"spring.cloud.consul.discovery.health-check-critical-timeout=1m",
-				"spring.cloud.consul.discovery.heartbeat.enabled=true" },
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+				"spring.cloud.consul.discovery.heartbeat.enabled=true"},webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoRegistrationCheckTtlDeregisterCriticalServiceTests {
 
@@ -53,13 +51,13 @@ public class ConsulAutoRegistrationCheckTtlDeregisterCriticalServiceTests {
 	public void contextLoads() {
 		NewService service = registration.getService();
 		assertThat("1m".equals(service.getCheck().getDeregisterCriticalServiceAfter()))
-				.as("Service with heartbeat check and deregister critical timeout registered").isTrue();
+	.as("Service with heartbeat check and deregister critical timeout registered").isTrue();
 	}
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class, ConsulHeartbeatAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class, ConsulHeartbeatAutoConfiguration.class})
 	protected static class TestConfig {
 
 	}

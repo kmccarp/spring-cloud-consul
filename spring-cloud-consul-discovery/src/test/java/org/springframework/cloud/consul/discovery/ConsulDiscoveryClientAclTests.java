@@ -39,11 +39,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Spencer Gibb
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulDiscoveryClientAclTests.MyTestConfig.class,
-		properties = { "spring.application.name=testConsulDiscoveryAcl",
+@SpringBootTest(classes = ConsulDiscoveryClientAclTests.MyTestConfig.class,properties = {"spring.application.name=testConsulDiscoveryAcl",
 				"spring.cloud.consul.discovery.preferIpAddress=true",
-				"consul.token=2d2e6b3b-1c82-40ab-8171-54609d8ad304" },
-		webEnvironment = RANDOM_PORT)
+				"consul.token=2d2e6b3b-1c82-40ab-8171-54609d8ad304"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulDiscoveryClientAclTests {
 
@@ -61,9 +59,9 @@ public class ConsulDiscoveryClientAclTests {
 	public void getInstancesForSecondServiceWorks() throws Exception {
 
 		new SpringApplicationBuilder(MyTestConfig.class).initializers(new ConsulTestcontainers()).run(
-				"--spring.application.name=testSecondServiceAcl", "--server.port=0",
-				"--spring.cloud.consul.discovery.preferIpAddress=true",
-				"--consul.token=2d2e6b3b-1c82-40ab-8171-54609d8ad304");
+	"--spring.application.name=testSecondServiceAcl", "--server.port=0",
+	"--spring.cloud.consul.discovery.preferIpAddress=true",
+	"--consul.token=2d2e6b3b-1c82-40ab-8171-54609d8ad304");
 
 		List<ServiceInstance> instances = this.discoveryClient.getInstances("testSecondServiceAcl");
 		assertThat(instances).as("second service instances was null").isNotNull();

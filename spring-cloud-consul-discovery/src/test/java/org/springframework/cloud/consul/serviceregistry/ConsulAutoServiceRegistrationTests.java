@@ -46,7 +46,7 @@ import static org.springframework.cloud.consul.serviceregistry.ConsulAutoRegistr
  * @author Venil Noronha
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(properties = { "spring.application.name=myTestService1-FF::something" }, webEnvironment = RANDOM_PORT)
+@SpringBootTest(properties = {"spring.application.name=myTestService1-FF::something"}, webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationTests {
 
@@ -67,12 +67,12 @@ public class ConsulAutoServiceRegistrationTests {
 		assertThat(service).as("service was null").isNotNull();
 		assertThat(service.getPort().intValue()).as("service port is 0").isNotEqualTo(0);
 		assertThat(service.getId().contains(":")).as("service id contained invalid character: " + service.getId())
-				.isFalse();
+	.isFalse();
 		assertThat(service.getId()).as("service id was wrong").isEqualTo(this.registration.getInstanceId());
 		assertThat(service.getService()).as("service name was wrong").isEqualTo("myTestService1-FF-something");
 		assertThat(ObjectUtils.isEmpty(service.getAddress())).as("service address must not be empty").isFalse();
 		assertThat(service.getAddress()).as("service address must equals hostname from discovery properties")
-				.isEqualTo(this.discoveryProperties.getHostname());
+	.isEqualTo(this.discoveryProperties.getHostname());
 	}
 
 	@Test
@@ -99,8 +99,8 @@ public class ConsulAutoServiceRegistrationTests {
 
 	@SpringBootConfiguration
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	protected static class TestConfig {
 
 	}

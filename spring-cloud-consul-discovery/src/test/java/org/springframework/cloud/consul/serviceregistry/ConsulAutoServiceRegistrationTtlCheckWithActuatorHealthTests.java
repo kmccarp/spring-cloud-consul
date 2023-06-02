@@ -47,10 +47,7 @@ import static org.awaitility.Awaitility.await;
  *
  * @author Chris Bono
  */
-@SpringBootTest(classes = ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests.TestConfig.class, properties = {
-		"spring.application.name=" + ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests.SERVICE_NAME,
-		"spring.cloud.consul.discovery.heartbeat.enabled=true", "spring.cloud.consul.discovery.heartbeat.ttl=2s" },
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests.TestConfig.class, properties = {"spring.application.name=" + ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests.SERVICE_NAME,"spring.cloud.consul.discovery.heartbeat.enabled=true", "spring.cloud.consul.discovery.heartbeat.ttl=2s"},webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests {
 
@@ -88,12 +85,12 @@ public class ConsulAutoServiceRegistrationTtlCheckWithActuatorHealthTests {
 
 	private void assertThatConsulTtlCheckIsInStatus(Check.CheckStatus expectedStatus) {
 		await().atMost(10, TimeUnit.SECONDS).untilAsserted(() -> assertThat(getCheckForService(SERVICE_NAME))
-				.isNotNull().extracting(Check::getStatus).isEqualTo(expectedStatus));
+	.isNotNull().extracting(Check::getStatus).isEqualTo(expectedStatus));
 	}
 
 	private Check getCheckForService(String serviceName) {
 		Response<List<Check>> checkResponse = this.consul.getHealthChecksForService(serviceName,
-				HealthChecksForServiceRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
+	HealthChecksForServiceRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
 		if (checkResponse.getValue() == null || checkResponse.getValue().isEmpty()) {
 			return null;
 		}

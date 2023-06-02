@@ -78,7 +78,7 @@ public class ConsulBootstrapper implements BootstrapRegistryInitializer {
 
 	@FunctionalInterface
 	public interface LoaderInvocation
-			extends BiFunction<ConfigDataLoaderContext, ConsulConfigDataResource, ConfigData> {
+extends BiFunction<ConfigDataLoaderContext, ConsulConfigDataResource, ConfigData> {
 
 	}
 
@@ -93,7 +93,7 @@ public class ConsulBootstrapper implements BootstrapRegistryInitializer {
 		private final LoaderInvocation invocation;
 
 		LoadContext(ConfigDataLoaderContext loaderContext, ConsulConfigDataResource resource, Binder binder,
-				LoaderInvocation invocation) {
+	LoaderInvocation invocation) {
 			Assert.notNull(loaderContext, "loaderContext may not be null");
 			Assert.notNull(resource, "resource may not be null");
 			Assert.notNull(binder, "binder may not be null");

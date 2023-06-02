@@ -48,9 +48,9 @@ public class ConsulConfigDataMissingEnvironmentPostProcessor extends ConfigDataM
 		}
 		boolean coreEnabled = environment.getProperty(ConsulProperties.PREFIX + ".enabled", Boolean.class, true);
 		boolean configEnabled = environment.getProperty(ConsulConfigProperties.PREFIX + ".enabled", Boolean.class,
-				true);
+	true);
 		boolean importCheckEnabled = environment.getProperty(ConsulConfigProperties.PREFIX + ".import-check.enabled",
-				Boolean.class, true);
+	Boolean.class, true);
 		if (!coreEnabled || !configEnabled || !importCheckEnabled) {
 			return false;
 		}
@@ -74,9 +74,9 @@ public class ConsulConfigDataMissingEnvironmentPostProcessor extends ConfigDataM
 				description = "No spring.config.import property has been defined";
 			}
 			String action = "Add a spring.config.import=consul: property to your configuration.\n"
-					+ "\tIf configuration is not required add spring.config.import=optional:consul: instead.\n"
-					+ "\tTo disable this check, set spring.cloud.consul.config.enabled=false or \n"
-					+ "\tspring.cloud.consul.config.import-check.enabled=false.";
+		+ "\tIf configuration is not required add spring.config.import=optional:consul: instead.\n"
+		+ "\tTo disable this check, set spring.cloud.consul.config.enabled=false or \n"
+		+ "\tspring.cloud.consul.config.import-check.enabled=false.";
 			return new FailureAnalysis(description, action, cause);
 		}
 

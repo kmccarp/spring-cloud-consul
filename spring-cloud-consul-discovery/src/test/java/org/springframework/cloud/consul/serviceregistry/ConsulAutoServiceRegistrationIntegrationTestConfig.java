@@ -32,8 +32,7 @@ import org.springframework.context.annotation.Configuration;
 @Retention(RetentionPolicy.RUNTIME)
 @Configuration(proxyBeanMethods = false)
 @EnableAutoConfiguration
-@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-		ConsulAutoServiceRegistrationAutoConfiguration.class, ConsulHeartbeatAutoConfiguration.class })
+@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,ConsulAutoServiceRegistrationAutoConfiguration.class, ConsulHeartbeatAutoConfiguration.class})
 public @interface ConsulAutoServiceRegistrationIntegrationTestConfig {
 
 }

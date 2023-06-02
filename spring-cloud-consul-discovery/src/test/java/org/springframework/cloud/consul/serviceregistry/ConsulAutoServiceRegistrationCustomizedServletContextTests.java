@@ -40,11 +40,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Piotr Wielgolaski
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedServletContextTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-WithServletContext",
+@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedServletContextTests.TestConfig.class,properties = {"spring.application.name=myTestService-WithServletContext",
 				"spring.cloud.consul.discovery.instanceId=myTestService1-WithServletContext",
-				"server.servlet.context-path=/customContext" },
-		webEnvironment = RANDOM_PORT)
+				"server.servlet.context-path=/customContext"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationCustomizedServletContextTests {
 

@@ -40,8 +40,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Marcin Biegan
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedTests.MyTestConfig.class,
-		properties = { "spring.application.name=testCustomAutoServiceRegistration" }, webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedTests.MyTestConfig.class,properties = {"spring.application.name=testCustomAutoServiceRegistration"}, webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationCustomizedTests {
 
@@ -57,23 +56,23 @@ public class ConsulAutoServiceRegistrationCustomizedTests {
 	@Test
 	public void usesCustomConsulLifecycle() {
 		assertThat(this.registration1.getConfiguration()).as("configuration is not customized")
-				.isEqualTo("customconfiguration");
+	.isEqualTo("customconfiguration");
 		assertThat(this.registration2.getConfiguration()).as("configuration is not customized")
-				.isEqualTo("customconfiguration");
+	.isEqualTo("customconfiguration");
 	}
 
 	@SpringBootConfiguration
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class MyTestConfig {
 
 		@Bean
 		public CustomAutoRegistration consulAutoServiceRegistration(ConsulServiceRegistry serviceRegistry,
-				AutoServiceRegistrationProperties autoServiceRegistrationProperties,
-				ConsulDiscoveryProperties properties, ConsulAutoRegistration registration) {
+	AutoServiceRegistrationProperties autoServiceRegistrationProperties,
+	ConsulDiscoveryProperties properties, ConsulAutoRegistration registration) {
 			return new CustomAutoRegistration(serviceRegistry, autoServiceRegistrationProperties, properties,
-					registration);
+		registration);
 		}
 
 	}
@@ -82,8 +81,8 @@ public class ConsulAutoServiceRegistrationCustomizedTests {
 
 		@Autowired
 		public CustomAutoRegistration(ConsulServiceRegistry serviceRegistry,
-				AutoServiceRegistrationProperties autoServiceRegistrationProperties,
-				ConsulDiscoveryProperties properties, ConsulAutoRegistration registration) {
+	AutoServiceRegistrationProperties autoServiceRegistrationProperties,
+	ConsulDiscoveryProperties properties, ConsulAutoRegistration registration) {
 			super(serviceRegistry, autoServiceRegistrationProperties, properties, registration);
 		}
 

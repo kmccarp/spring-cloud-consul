@@ -43,11 +43,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Jon Freedman
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationDisabledTests.TestConfig.class,
-		properties = { "spring.application.name=myTestNotDeRegisteredService",
+@SpringBootTest(classes = ConsulAutoServiceRegistrationDisabledTests.TestConfig.class,properties = {"spring.application.name=myTestNotDeRegisteredService",
 				"spring.cloud.consul.discovery.instanceId=myTestNotDeRegisteredService-D",
-				"spring.cloud.consul.discovery.deregister=false" },
-		webEnvironment = RANDOM_PORT)
+				"spring.cloud.consul.discovery.deregister=false"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceDeRegistrationDisabledTests {
 
@@ -87,8 +85,8 @@ public class ConsulAutoServiceDeRegistrationDisabledTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

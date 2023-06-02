@@ -33,7 +33,7 @@ import org.springframework.context.annotation.Conditional;
  * @author Spencer Gibb
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.TYPE, ElementType.METHOD })
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Conditional(ConditionalOnConsulEnabled.OnConsulEnabledCondition.class)
 public @interface ConditionalOnConsulEnabled {
 

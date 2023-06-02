@@ -1,4 +1,3 @@
-
 /*
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -17,6 +16,8 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 */
+
+
 
 import java.util.Properties;
 
@@ -54,20 +55,20 @@ public class MavenWrapperDownloader {
 		// custom
 		// wrapperUrl parameter.
 		File mavenWrapperPropertyFile = new File(baseDirectory,
-				MAVEN_WRAPPER_PROPERTIES_PATH);
+	MAVEN_WRAPPER_PROPERTIES_PATH);
 		String url = DEFAULT_DOWNLOAD_URL;
 		if (mavenWrapperPropertyFile.exists()) {
 			FileInputStream mavenWrapperPropertyFileInputStream = null;
 			try {
 				mavenWrapperPropertyFileInputStream = new FileInputStream(
-						mavenWrapperPropertyFile);
+			mavenWrapperPropertyFile);
 				Properties mavenWrapperProperties = new Properties();
 				mavenWrapperProperties.load(mavenWrapperPropertyFileInputStream);
 				url = mavenWrapperProperties.getProperty(PROPERTY_NAME_WRAPPER_URL, url);
 			}
 			catch (IOException e) {
 				System.out.println(
-						"- ERROR loading '" + MAVEN_WRAPPER_PROPERTIES_PATH + "'");
+			"- ERROR loading '" + MAVEN_WRAPPER_PROPERTIES_PATH + "'");
 			}
 			finally {
 				try {
@@ -83,11 +84,11 @@ public class MavenWrapperDownloader {
 		System.out.println("- Downloading from: : " + url);
 
 		File outputFile = new File(baseDirectory.getAbsolutePath(),
-				MAVEN_WRAPPER_JAR_PATH);
+	MAVEN_WRAPPER_JAR_PATH);
 		if (!outputFile.getParentFile().exists()) {
 			if (!outputFile.getParentFile().mkdirs()) {
 				System.out.println("- ERROR creating output direcrory '"
-						+ outputFile.getParentFile().getAbsolutePath() + "'");
+			+ outputFile.getParentFile().getAbsolutePath() + "'");
 			}
 		}
 		System.out.println("- Downloading to: " + outputFile.getAbsolutePath());
@@ -104,7 +105,7 @@ public class MavenWrapperDownloader {
 	}
 
 	private static void downloadFileFromURL(String urlString, File destination)
-			throws Exception {
+throws Exception {
 		URL website = new URL(urlString);
 		ReadableByteChannel rbc;
 		rbc = Channels.newChannel(website.openStream());

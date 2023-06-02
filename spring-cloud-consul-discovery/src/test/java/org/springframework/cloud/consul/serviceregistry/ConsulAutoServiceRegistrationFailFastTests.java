@@ -52,14 +52,14 @@ public class ConsulAutoServiceRegistrationFailFastTests {
 	public void testFailFastEnabled() {
 		this.exception.expectCause(isA(ConsulException.class));
 		new SpringApplicationBuilder(TestConfig.class).properties("spring.application.name=testregistrationfails-fast",
-				"spring.jmx.default-domain=testautoregfailfast", "server.port=0",
-				"spring.cloud.consul.discovery.failFast=true").run();
+	"spring.jmx.default-domain=testautoregfailfast", "server.port=0",
+	"spring.cloud.consul.discovery.failFast=true").run();
 	}
 
 	@SpringBootConfiguration
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	protected static class TestConfig {
 
 		@Bean

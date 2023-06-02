@@ -86,7 +86,7 @@ public class ConsulPropertySourceLocator implements PropertySourceLocator, Consu
 
 			for (String propertySourceContext : this.contexts) {
 				ConsulPropertySource propertySource = sources.createPropertySource(propertySourceContext, this.consul,
-						contextIndex::put);
+			contextIndex::put);
 				if (propertySource != null) {
 					composite.addPropertySource(propertySource);
 				}

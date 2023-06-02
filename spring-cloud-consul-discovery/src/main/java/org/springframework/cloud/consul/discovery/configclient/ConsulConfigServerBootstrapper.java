@@ -41,8 +41,8 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 	@Override
 	public void initialize(BootstrapRegistry registry) {
 		if (!ClassUtils.isPresent("org.springframework.cloud.config.client.ConfigServerInstanceProvider", null) ||
-		// don't run if bootstrap enabled, how to check the property?
-				ClassUtils.isPresent("org.springframework.cloud.bootstrap.marker.Marker", null)) {
+	// don't run if bootstrap enabled, how to check the property?
+	ClassUtils.isPresent("org.springframework.cloud.bootstrap.marker.Marker", null)) {
 			return;
 		}
 		// create consul client
@@ -52,7 +52,7 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 				return null;
 			}
 			return binder.bind(ConsulProperties.PREFIX, Bindable.of(ConsulProperties.class), getBindHandler(context))
-					.orElseGet(ConsulProperties::new);
+		.orElseGet(ConsulProperties::new);
 		});
 		registry.registerIfAbsent(ConsulClient.class, context -> {
 			if (!isDiscoveryEnabled(context.get(Binder.class))) {
@@ -60,7 +60,7 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 			}
 			ConsulProperties consulProperties = context.get(ConsulProperties.class);
 			return ConsulAutoConfiguration.createConsulClient(consulProperties,
-					ConsulAutoConfiguration.createConsulRawClientBuilder());
+		ConsulAutoConfiguration.createConsulRawClientBuilder());
 		});
 		registry.registerIfAbsent(ConsulDiscoveryClient.class, context -> {
 			Binder binder = context.get(Binder.class);
@@ -69,9 +69,9 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 			}
 			ConsulClient consulClient = context.get(ConsulClient.class);
 			ConsulDiscoveryProperties properties = binder
-					.bind(ConsulDiscoveryProperties.PREFIX, Bindable.of(ConsulDiscoveryProperties.class),
-							getBindHandler(context))
-					.orElseGet(() -> new ConsulDiscoveryProperties(new InetUtils(new InetUtilsProperties())));
+		.bind(ConsulDiscoveryProperties.PREFIX, Bindable.of(ConsulDiscoveryProperties.class),
+	getBindHandler(context))
+		.orElseGet(() -> new ConsulDiscoveryProperties(new InetUtils(new InetUtilsProperties())));
 			return new ConsulDiscoveryClient(consulClient, properties);
 		});
 		// promote discovery client if created
@@ -82,7 +82,7 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 			ConsulDiscoveryClient discoveryClient = event.getBootstrapContext().get(ConsulDiscoveryClient.class);
 			if (discoveryClient != null) {
 				event.getApplicationContext().getBeanFactory().registerSingleton("consulDiscoveryClient",
-						discoveryClient);
+			discoveryClient);
 			}
 		});
 		registry.registerIfAbsent(ConfigServerInstanceProvider.Function.class, context -> {
@@ -101,8 +101,8 @@ public class ConsulConfigServerBootstrapper implements BootstrapRegistryInitiali
 
 	private boolean isDiscoveryEnabled(Binder binder) {
 		return binder.bind(ConfigClientProperties.CONFIG_DISCOVERY_ENABLED, Boolean.class).orElse(false)
-				&& binder.bind(ConditionalOnConsulDiscoveryEnabled.PROPERTY, Boolean.class).orElse(true)
-				&& binder.bind("spring.cloud.discovery.enabled", Boolean.class).orElse(true);
+	&& binder.bind(ConditionalOnConsulDiscoveryEnabled.PROPERTY, Boolean.class).orElse(true)
+	&& binder.bind("spring.cloud.discovery.enabled", Boolean.class).orElse(true);
 	}
 
 }

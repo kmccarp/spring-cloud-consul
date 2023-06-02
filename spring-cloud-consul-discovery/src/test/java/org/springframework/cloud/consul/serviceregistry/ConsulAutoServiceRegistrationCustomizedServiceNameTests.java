@@ -42,11 +42,9 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Spencer Gibb
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedServiceNameTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-CC",
+@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedServiceNameTests.TestConfig.class,properties = {"spring.application.name=myTestService-CC",
 				"spring.cloud.consul.discovery.instanceId=myTestService1-CC",
-				"spring.cloud.consul.discovery.serviceName=myprefix-${spring.application.name}" },
-		webEnvironment = RANDOM_PORT)
+				"spring.cloud.consul.discovery.serviceName=myprefix-${spring.application.name}"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationCustomizedServiceNameTests {
 
@@ -66,8 +64,8 @@ public class ConsulAutoServiceRegistrationCustomizedServiceNameTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

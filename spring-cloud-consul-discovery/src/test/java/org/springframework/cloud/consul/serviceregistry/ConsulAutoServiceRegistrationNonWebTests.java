@@ -40,8 +40,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Spencer Gibb
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationNonWebTests.TestConfig.class,
-		properties = { "spring.application.name=consulNonWebTest", "server.port=32111" }, webEnvironment = NONE)
+@SpringBootTest(classes = ConsulAutoServiceRegistrationNonWebTests.TestConfig.class,properties = {"spring.application.name=consulNonWebTest", "server.port=32111"}, webEnvironment = NONE)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationNonWebTests {
 
@@ -59,7 +58,7 @@ public class ConsulAutoServiceRegistrationNonWebTests {
 		Map<String, Service> services = response.getValue();
 		Service service = services.get("consulNonWebTest");
 		assertThat(service).as("service was registered").isNull(); // no port to listen,
-																	// hence no
+		// hence no
 		// registration
 	}
 

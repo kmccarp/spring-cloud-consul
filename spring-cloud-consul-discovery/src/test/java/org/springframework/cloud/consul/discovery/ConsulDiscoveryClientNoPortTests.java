@@ -45,10 +45,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 /**
  * @author Tomas Forsman
  */
-@SpringBootTest(classes = ConsulDiscoveryClientNoPortTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-NoPort",
-				"spring.cloud.consul.discovery.instanceId=myTestService1-NoPort" },
-		webEnvironment = NONE)
+@SpringBootTest(classes = ConsulDiscoveryClientNoPortTests.TestConfig.class,properties = {"spring.application.name=myTestService-NoPort",
+				"spring.cloud.consul.discovery.instanceId=myTestService1-NoPort"},webEnvironment = NONE)
 @Testcontainers
 public class ConsulDiscoveryClientNoPortTests {
 
@@ -85,8 +83,8 @@ public class ConsulDiscoveryClientNoPortTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

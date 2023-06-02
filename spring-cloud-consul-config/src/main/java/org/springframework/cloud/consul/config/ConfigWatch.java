@@ -66,12 +66,12 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 	private ScheduledFuture<?> watchFuture;
 
 	public ConfigWatch(ConsulConfigProperties properties, ConsulClient consul,
-			LinkedHashMap<String, Long> initialIndexes) {
+LinkedHashMap<String, Long> initialIndexes) {
 		this(properties, consul, initialIndexes, getTaskScheduler());
 	}
 
 	public ConfigWatch(ConsulConfigProperties properties, ConsulClient consul,
-			LinkedHashMap<String, Long> initialIndexes, TaskScheduler taskScheduler) {
+LinkedHashMap<String, Long> initialIndexes, TaskScheduler taskScheduler) {
 		this.properties = properties;
 		this.consul = consul;
 		this.consulIndexes = new LinkedHashMap<>(initialIndexes);
@@ -93,7 +93,7 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 	public void start() {
 		if (this.running.compareAndSet(false, true)) {
 			this.watchFuture = this.taskScheduler.scheduleWithFixedDelay(this::watchConfigKeyValues,
-					this.properties.getWatch().getDelay());
+		this.properties.getWatch().getDelay());
 		}
 	}
 
@@ -155,7 +155,7 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 				}
 
 				Response<List<GetValue>> response = this.consul.getKVValues(context, aclToken,
-						new QueryParams(this.properties.getWatch().getWaitTime(), currentIndex));
+			new QueryParams(this.properties.getWatch().getWaitTime(), currentIndex));
 
 				// if response.value == null, response was a 404, otherwise it was a
 				// 200, reducing churn if there wasn't anything
@@ -199,7 +199,7 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 					// simplified one line log message in the event of an agent
 					// failure
 					log.warn("Error querying consul Key/Values for context '" + context + "'. Message: "
-							+ e.getMessage());
+				+ e.getMessage());
 				}
 			}
 		}
@@ -242,7 +242,7 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 			}
 			RefreshEventData that = (RefreshEventData) o;
 			return Objects.equals(this.context, that.context) && Objects.equals(this.prevIndex, that.prevIndex)
-					&& Objects.equals(this.newIndex, that.newIndex);
+		&& Objects.equals(this.newIndex, that.newIndex);
 		}
 
 		@Override
@@ -253,7 +253,7 @@ public class ConfigWatch implements ApplicationEventPublisherAware, SmartLifecyc
 		@Override
 		public String toString() {
 			return new ToStringCreator(this).append("context", this.context).append("prevIndex", this.prevIndex)
-					.append("newIndex", this.newIndex).toString();
+		.append("newIndex", this.newIndex).toString();
 		}
 
 	}

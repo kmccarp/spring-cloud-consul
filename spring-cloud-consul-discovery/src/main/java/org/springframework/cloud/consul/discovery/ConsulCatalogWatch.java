@@ -95,7 +95,7 @@ public class ConsulCatalogWatch implements ApplicationEventPublisherAware, Smart
 	public void start() {
 		if (this.running.compareAndSet(false, true)) {
 			this.watchFuture = this.taskScheduler.scheduleWithFixedDelay(this::catalogServicesWatch,
-					this.properties.getCatalogServicesWatchDelay());
+		this.properties.getCatalogServicesWatchDelay());
 		}
 	}
 
@@ -125,8 +125,8 @@ public class ConsulCatalogWatch implements ApplicationEventPublisherAware, Smart
 			}
 
 			CatalogServicesRequest request = CatalogServicesRequest.newBuilder()
-					.setQueryParams(new QueryParams(this.properties.getCatalogServicesWatchTimeout(), index))
-					.setToken(this.properties.getAclToken()).build();
+		.setQueryParams(new QueryParams(this.properties.getCatalogServicesWatchTimeout(), index))
+		.setToken(this.properties.getAclToken()).build();
 			Response<Map<String, List<String>>> response = this.consul.getCatalogServices(request);
 			Long consulIndex = response.getConsulIndex();
 			if (consulIndex != null) {

@@ -39,8 +39,8 @@ public class ConsulAutoServiceRegistration extends AbstractAutoServiceRegistrati
 	private ConsulAutoRegistration registration;
 
 	public ConsulAutoServiceRegistration(ConsulServiceRegistry serviceRegistry,
-			AutoServiceRegistrationProperties autoServiceRegistrationProperties, ConsulDiscoveryProperties properties,
-			ConsulAutoRegistration registration) {
+AutoServiceRegistrationProperties autoServiceRegistrationProperties, ConsulDiscoveryProperties properties,
+ConsulAutoRegistration registration) {
 		super(serviceRegistry, autoServiceRegistrationProperties);
 		this.properties = properties;
 		this.registration = registration;

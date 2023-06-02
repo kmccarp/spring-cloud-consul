@@ -64,9 +64,9 @@ class TtlSchedulerTests {
 	@BeforeEach
 	void setup() {
 		StaticListableBeanFactory beanFactory = new StaticListableBeanFactory(
-				Collections.singletonMap("applicationStatusProvider", applicationStatusProvider));
+	Collections.singletonMap("applicationStatusProvider", applicationStatusProvider));
 		ttlScheduler = new TtlScheduler(heartbeatProperties, discoveryProperties, client,
-				ReregistrationPredicate.DEFAULT, beanFactory.getBeanProvider(ApplicationStatusProvider.class));
+	ReregistrationPredicate.DEFAULT, beanFactory.getBeanProvider(ApplicationStatusProvider.class));
 		when(heartbeatProperties.computeHeartbeatInterval()).thenReturn(Duration.ofMillis(2000));
 	}
 

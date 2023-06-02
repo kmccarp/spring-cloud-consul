@@ -235,7 +235,7 @@ public class ConsulBinderTests {
 	private String getConsumerMessagePayload(int port) {
 		try {
 			return this.restTemplate.getForObject(String.format("http://localhost:%d/message-payload", port),
-					String.class);
+		String.class);
 		}
 		catch (ResourceAccessException e) {
 			logger.debug("getConsumerMessagePayload", e);
@@ -251,7 +251,7 @@ public class ConsulBinderTests {
 	private boolean partitionSelectorUsed(int port) {
 		try {
 			return this.restTemplate.getForObject(String.format("http://localhost:%d/partition-strategy-invoked", port),
-					Boolean.class);
+		Boolean.class);
 		}
 		catch (ResourceAccessException e) {
 			logger.debug("partitionSelectorUsed", e);

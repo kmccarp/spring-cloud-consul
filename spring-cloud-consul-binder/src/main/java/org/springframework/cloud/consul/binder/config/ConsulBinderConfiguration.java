@@ -38,7 +38,7 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnMissingBean(Binder.class)
-@Import({ PropertyPlaceholderAutoConfiguration.class })
+@Import({PropertyPlaceholderAutoConfiguration.class})
 @ConditionalOnConsulEnabled
 @ConditionalOnProperty(name = "spring.cloud.consul.binder.enabled", matchIfMissing = true)
 // FIXME: boot 2.0.0 @EnableConfigurationProperties({ConsulBinderProperties.class})

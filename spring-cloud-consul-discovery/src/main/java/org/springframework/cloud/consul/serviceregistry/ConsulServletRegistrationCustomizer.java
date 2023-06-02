@@ -42,7 +42,7 @@ public class ConsulServletRegistrationCustomizer implements ConsulRegistrationCu
 		}
 		ServletContext sc = this.servletContext.getIfAvailable();
 		if (sc != null && StringUtils.hasText(sc.getContextPath())
-				&& StringUtils.hasText(sc.getContextPath().replaceAll("/", ""))) {
+	&& StringUtils.hasText(sc.getContextPath().replaceAll("/", ""))) {
 			List<String> tags = registration.getService().getTags();
 			if (tags == null) {
 				tags = new ArrayList<>();

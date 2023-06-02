@@ -107,7 +107,7 @@ public class ConsulConfigProperties {
 	}
 
 	@DeprecatedConfigurationProperty(reason = "replaced to support multiple prefixes",
-			replacement = PREFIX + ".prefixes")
+replacement = PREFIX + ".prefixes")
 	public String getPrefix() {
 		if (CollectionUtils.isEmpty(this.prefixes)) {
 			return null;
@@ -192,9 +192,9 @@ public class ConsulConfigProperties {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this).append("enabled", this.enabled).append("prefixes", this.prefixes)
-				.append("defaultContext", this.defaultContext).append("profileSeparator", this.profileSeparator)
-				.append("format", this.format).append("dataKey", this.dataKey).append("aclToken", this.aclToken)
-				.append("watch", this.watch).append("failFast", this.failFast).append("name", this.name).toString();
+	.append("defaultContext", this.defaultContext).append("profileSeparator", this.profileSeparator)
+	.append("format", this.format).append("dataKey", this.dataKey).append("aclToken", this.aclToken)
+	.append("watch", this.watch).append("failFast", this.failFast).append("name", this.name).toString();
 	}
 
 	/**
@@ -296,7 +296,7 @@ public class ConsulConfigProperties {
 		@Override
 		public String toString() {
 			return new ToStringCreator(this).append("waitTime", this.waitTime).append("enabled", this.enabled)
-					.append("delay", this.delay).toString();
+		.append("delay", this.delay).toString();
 		}
 
 	}

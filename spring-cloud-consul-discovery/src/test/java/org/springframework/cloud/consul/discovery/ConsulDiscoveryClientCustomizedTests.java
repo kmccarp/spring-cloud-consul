@@ -41,14 +41,12 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Tim Ysewyn
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulDiscoveryClientCustomizedTests.MyTestConfig.class,
-		properties = { "spring.application.name=testConsulDiscovery2",
+@SpringBootTest(classes = ConsulDiscoveryClientCustomizedTests.MyTestConfig.class,properties = {"spring.application.name=testConsulDiscovery2",
 				"spring.cloud.consul.discovery.instanceId=testConsulDiscovery2Id",
 				"spring.cloud.consul.discovery.hostname=testConsulDiscovery2Host",
 				"spring.cloud.consul.discovery.registerHealthCheck=false",
 				"spring.cloud.consul.discovery.tags=plaintag", "spring.cloud.consul.discovery.metadata[foo]=bar",
-				"spring.cloud.consul.discovery.metadata[foo2]=bar2" },
-		webEnvironment = RANDOM_PORT)
+				"spring.cloud.consul.discovery.metadata[foo2]=bar2"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulDiscoveryClientCustomizedTests {
 

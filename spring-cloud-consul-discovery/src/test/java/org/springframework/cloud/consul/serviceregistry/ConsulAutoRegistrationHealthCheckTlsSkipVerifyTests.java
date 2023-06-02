@@ -39,10 +39,8 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Patrick Hi
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoRegistrationHealthCheckTlsSkipVerifyTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-DiscoveryHealthCheckTlsSkipVerify",
-				"spring.cloud.consul.discovery.health-check-tls-skip-verify=true" },
-		webEnvironment = RANDOM_PORT)
+@SpringBootTest(classes = ConsulAutoRegistrationHealthCheckTlsSkipVerifyTests.TestConfig.class,properties = {"spring.application.name=myTestService-DiscoveryHealthCheckTlsSkipVerify",
+				"spring.cloud.consul.discovery.health-check-tls-skip-verify=true"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoRegistrationHealthCheckTlsSkipVerifyTests {
 
@@ -66,8 +64,8 @@ public class ConsulAutoRegistrationHealthCheckTlsSkipVerifyTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

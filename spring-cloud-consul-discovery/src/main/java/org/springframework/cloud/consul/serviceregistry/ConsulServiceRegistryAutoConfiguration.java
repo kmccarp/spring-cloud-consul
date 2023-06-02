@@ -46,7 +46,7 @@ public class ConsulServiceRegistryAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public ConsulServiceRegistry consulServiceRegistry(ConsulClient consulClient, ConsulDiscoveryProperties properties,
-			HeartbeatProperties heartbeatProperties, @Autowired(required = false) TtlScheduler ttlScheduler) {
+HeartbeatProperties heartbeatProperties, @Autowired(required = false) TtlScheduler ttlScheduler) {
 		return new ConsulServiceRegistry(consulClient, properties, ttlScheduler, heartbeatProperties);
 	}
 

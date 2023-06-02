@@ -49,8 +49,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnConsulDiscoveryEnabled
 @EnableConfigurationProperties(DiscoveryClientHealthIndicatorProperties.class)
 @AutoConfigureBefore(ReactiveCommonsClientAutoConfiguration.class)
-@AutoConfigureAfter({ UtilAutoConfiguration.class, ReactiveCompositeDiscoveryClientAutoConfiguration.class,
-		ConsulAutoConfiguration.class })
+@AutoConfigureAfter({UtilAutoConfiguration.class, ReactiveCompositeDiscoveryClientAutoConfiguration.class,ConsulAutoConfiguration.class})
 public class ConsulReactiveDiscoveryClientConfiguration {
 
 	@Bean
@@ -62,7 +61,7 @@ public class ConsulReactiveDiscoveryClientConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public ConsulReactiveDiscoveryClient consulReactiveDiscoveryClient(ConsulClient client,
-			ConsulDiscoveryProperties discoveryProperties) {
+ConsulDiscoveryProperties discoveryProperties) {
 		return new ConsulReactiveDiscoveryClient(client, discoveryProperties);
 	}
 
@@ -70,7 +69,7 @@ public class ConsulReactiveDiscoveryClientConfiguration {
 	@ConditionalOnClass(name = "org.springframework.boot.actuate.health.ReactiveHealthIndicator")
 	@ConditionalOnDiscoveryHealthIndicatorEnabled
 	public ReactiveDiscoveryClientHealthIndicator consulReactiveDiscoveryClientHealthIndicator(
-			ConsulReactiveDiscoveryClient client, DiscoveryClientHealthIndicatorProperties properties) {
+ConsulReactiveDiscoveryClient client, DiscoveryClientHealthIndicatorProperties properties) {
 		return new ReactiveDiscoveryClientHealthIndicator(client, properties);
 	}
 

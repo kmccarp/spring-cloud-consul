@@ -43,12 +43,10 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Spencer Gibb
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedAgentAddressTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-AA",
+@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedAgentAddressTests.TestConfig.class,properties = {"spring.application.name=myTestService-AA",
 				"spring.cloud.consul.discovery.instanceId=myTestService1-AA",
 				"spring.cloud.consul.discovery.serviceName=myprefix-${spring.application.name}",
-				"spring.cloud.consul.discovery.preferAgentAddress=true" },
-		webEnvironment = RANDOM_PORT)
+				"spring.cloud.consul.discovery.preferAgentAddress=true"},webEnvironment = RANDOM_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationCustomizedAgentAddressTests {
 
@@ -69,8 +67,8 @@ public class ConsulAutoServiceRegistrationCustomizedAgentAddressTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

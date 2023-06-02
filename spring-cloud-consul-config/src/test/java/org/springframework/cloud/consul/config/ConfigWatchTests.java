@@ -98,7 +98,7 @@ public class ConfigWatchTests {
 	}
 
 	private void setupWatch(ApplicationEventPublisher eventPublisher, GetValue getValue, String context,
-			String aclToken) {
+String aclToken) {
 		ConsulClient consul = mock(ConsulClient.class);
 		List<GetValue> getValues = null;
 

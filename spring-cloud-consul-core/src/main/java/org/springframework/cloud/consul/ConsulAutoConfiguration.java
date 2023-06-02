@@ -64,7 +64,7 @@ public class ConsulAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public ConsulClient consulClient(ConsulProperties consulProperties,
-			Supplier<ConsulRawClient.Builder> consulRawClientBuilderSupplier) {
+Supplier<ConsulRawClient.Builder> consulRawClientBuilderSupplier) {
 		return createConsulClient(consulProperties, consulRawClientBuilderSupplier);
 	}
 
@@ -73,17 +73,17 @@ public class ConsulAutoConfiguration {
 	}
 
 	public static ConsulClient createConsulClient(ConsulProperties consulProperties,
-			Supplier<ConsulRawClient.Builder> consulRawClientBuilderSupplier) {
+Supplier<ConsulRawClient.Builder> consulRawClientBuilderSupplier) {
 		ConsulRawClient.Builder builder = consulRawClientBuilderSupplier.get();
 		final String agentPath = consulProperties.getPath();
 		final String agentHost = StringUtils.hasLength(consulProperties.getScheme())
-				? consulProperties.getScheme() + "://" + consulProperties.getHost() : consulProperties.getHost();
+	? consulProperties.getScheme() + "://" + consulProperties.getHost() : consulProperties.getHost();
 		builder.setHost(agentHost).setPort(consulProperties.getPort());
 
 		if (consulProperties.getTls() != null) {
 			ConsulProperties.TLSConfig tls = consulProperties.getTls();
 			TLSConfig tlsConfig = new TLSConfig(tls.getKeyStoreInstanceType(), tls.getCertificatePath(),
-					tls.getCertificatePassword(), tls.getKeyStorePath(), tls.getKeyStorePassword());
+		tls.getCertificatePassword(), tls.getKeyStorePath(), tls.getKeyStorePassword());
 			builder.setTlsConfig(tlsConfig);
 		}
 
@@ -113,13 +113,13 @@ public class ConsulAutoConfiguration {
 		@ConditionalOnMissingBean
 		@ConditionalOnEnabledHealthIndicator("consul")
 		public ConsulHealthIndicator consulHealthIndicator(ConsulClient consulClient,
-				ConsulHealthIndicatorProperties properties) {
+	ConsulHealthIndicatorProperties properties) {
 			return new ConsulHealthIndicator(consulClient, properties);
 		}
 
 	}
 
-	@ConditionalOnClass({ Retryable.class, Aspect.class, AopAutoConfiguration.class })
+	@ConditionalOnClass({Retryable.class, Aspect.class, AopAutoConfiguration.class})
 	@Configuration(proxyBeanMethods = false)
 	@EnableRetry(proxyTargetClass = true)
 	@Import(AopAutoConfiguration.class)
@@ -131,8 +131,8 @@ public class ConsulAutoConfiguration {
 		@ConditionalOnMissingBean(name = "consulRetryInterceptor")
 		public RetryOperationsInterceptor consulRetryInterceptor(RetryProperties properties) {
 			return RetryInterceptorBuilder.stateless().backOffOptions(properties.getInitialInterval(),
-					properties.getMultiplier(), properties.getMaxInterval()).maxAttempts(properties.getMaxAttempts())
-					.build();
+		properties.getMultiplier(), properties.getMaxInterval()).maxAttempts(properties.getMaxAttempts())
+		.build();
 		}
 
 	}

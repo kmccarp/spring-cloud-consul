@@ -42,8 +42,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
  * @author Spencer Gibb
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedDiscoveryPortTests.TestConfig.class,
-		properties = { "spring.application.name=myTestService-DiscoveryPort" }, webEnvironment = DEFINED_PORT)
+@SpringBootTest(classes = ConsulAutoServiceRegistrationCustomizedDiscoveryPortTests.TestConfig.class,properties = {"spring.application.name=myTestService-DiscoveryPort"}, webEnvironment = DEFINED_PORT)
 @ContextConfiguration(initializers = ConsulTestcontainers.class)
 public class ConsulAutoServiceRegistrationCustomizedDiscoveryPortTests {
 
@@ -76,7 +75,7 @@ public class ConsulAutoServiceRegistrationCustomizedDiscoveryPortTests {
 		assertThat(check).as("check was null").isNotNull();
 
 		String httpCheck = String.format("%s://%s:%s%s", this.properties.getScheme(), this.properties.getHostname(),
-				this.properties.getPort(), this.properties.getHealthCheckPath());
+	this.properties.getPort(), this.properties.getHealthCheckPath());
 		assertThat(check.getHttp()).as("http check was wrong").isEqualTo(httpCheck);
 
 		// unable to call consul api to get health check details
@@ -84,8 +83,8 @@ public class ConsulAutoServiceRegistrationCustomizedDiscoveryPortTests {
 
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
-	@ImportAutoConfiguration({ AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
-			ConsulAutoServiceRegistrationAutoConfiguration.class })
+	@ImportAutoConfiguration({AutoServiceRegistrationConfiguration.class, ConsulAutoConfiguration.class,
+ConsulAutoServiceRegistrationAutoConfiguration.class})
 	public static class TestConfig {
 
 	}

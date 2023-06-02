@@ -33,7 +33,7 @@ import org.springframework.util.ClassUtils;
 public class ConsulRetryBootstrapper implements BootstrapRegistryInitializer {
 
 	static final boolean RETRY_IS_PRESENT = ClassUtils.isPresent("org.springframework.retry.annotation.Retryable",
-			null);
+null);
 
 	@Override
 	public void initialize(BootstrapRegistry registry) {
@@ -42,15 +42,15 @@ public class ConsulRetryBootstrapper implements BootstrapRegistryInitializer {
 		}
 
 		registry.registerIfAbsent(RetryProperties.class, context -> context.get(Binder.class)
-				.bind(RetryProperties.PREFIX, RetryProperties.class).orElseGet(RetryProperties::new));
+	.bind(RetryProperties.PREFIX, RetryProperties.class).orElseGet(RetryProperties::new));
 
 		registry.registerIfAbsent(RetryTemplate.class, context -> {
 			RetryProperties properties = context.get(RetryProperties.class);
 			if (properties.isEnabled()) {
 				return RetryTemplate.builder().maxAttempts(properties.getMaxAttempts())
-						.exponentialBackoff(properties.getInitialInterval(), properties.getMultiplier(),
-								properties.getMaxInterval())
-						.build();
+			.exponentialBackoff(properties.getInitialInterval(), properties.getMultiplier(),
+		properties.getMaxInterval())
+			.build();
 			}
 			return null;
 		});
@@ -58,7 +58,7 @@ public class ConsulRetryBootstrapper implements BootstrapRegistryInitializer {
 			RetryTemplate retryTemplate = context.get(RetryTemplate.class);
 			if (retryTemplate != null) {
 				return loadContext -> retryTemplate.execute(retryContext -> loadContext.getInvocation()
-						.apply(loadContext.getLoaderContext(), loadContext.getResource()));
+			.apply(loadContext.getLoaderContext(), loadContext.getResource()));
 			}
 			// disabled
 			return null;

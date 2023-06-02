@@ -68,7 +68,7 @@ public class ConsulPropertySource extends EnumerablePropertySource<ConsulClient>
 		}
 
 		Response<List<GetValue>> response = this.source.getKVValues(this.context, this.configProperties.getAclToken(),
-				QueryParams.DEFAULT);
+	QueryParams.DEFAULT);
 
 		this.initialIndex = response.getConsulIndex();
 

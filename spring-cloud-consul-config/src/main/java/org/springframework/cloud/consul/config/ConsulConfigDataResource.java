@@ -34,7 +34,7 @@ public class ConsulConfigDataResource extends ConfigDataResource {
 	private final String profile;
 
 	public ConsulConfigDataResource(String context, ConsulConfigProperties properties,
-			ConsulPropertySources consulPropertySources, String profile) {
+ConsulPropertySources consulPropertySources, String profile) {
 		this.properties = properties;
 		this.context = context;
 		this.optional = true;
@@ -44,13 +44,13 @@ public class ConsulConfigDataResource extends ConfigDataResource {
 
 	@Deprecated
 	public ConsulConfigDataResource(String context, ConsulConfigProperties properties,
-			ConsulPropertySources consulPropertySources) {
+ConsulPropertySources consulPropertySources) {
 		this(context, true, properties, consulPropertySources);
 	}
 
 	@Deprecated
 	public ConsulConfigDataResource(String context, boolean optional, ConsulConfigProperties properties,
-			ConsulPropertySources consulPropertySources) {
+ConsulPropertySources consulPropertySources) {
 		this.properties = properties;
 		this.context = context;
 		this.optional = optional;
@@ -89,7 +89,7 @@ public class ConsulConfigDataResource extends ConfigDataResource {
 		}
 		ConsulConfigDataResource that = (ConsulConfigDataResource) o;
 		return this.optional == that.optional && this.context.equals(that.context)
-				&& Objects.equals(this.profile, that.profile);
+	&& Objects.equals(this.profile, that.profile);
 	}
 
 	@Override
@@ -100,7 +100,7 @@ public class ConsulConfigDataResource extends ConfigDataResource {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this).append("context", context).append("optional", optional)
-				.append("properties", properties).append("profile", profile).toString();
+	.append("properties", properties).append("profile", profile).toString();
 
 	}
 

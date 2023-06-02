@@ -46,11 +46,11 @@ public class ConsulConfigDataLocationResolverTests {
 	@Test
 	public void testParseLocation() {
 		ConsulConfigDataLocationResolver resolver = new ConsulConfigDataLocationResolver(
-				destination -> LogFactory.getLog(ConsulConfigDataLocationResolver.class));
+	destination -> LogFactory.getLog(ConsulConfigDataLocationResolver.class));
 		UriComponents uriComponents = resolver.parseLocation(null,
-				ConfigDataLocation.of("consul:myhost:8501/mypath1;/mypath2;/mypath3"));
+	ConfigDataLocation.of("consul:myhost:8501/mypath1;/mypath2;/mypath3"));
 		assertThat(uriComponents.toUri()).hasScheme("consul").hasHost("myhost").hasPort(8501)
-				.hasPath("/mypath1;/mypath2;/mypath3");
+	.hasPath("/mypath1;/mypath2;/mypath3");
 
 		uriComponents = resolver.parseLocation(null, ConfigDataLocation.of("consul:myhost:8501"));
 		assertThat(uriComponents.toUri()).hasScheme("consul").hasHost("myhost").hasPort(8501).hasPath("");
@@ -70,7 +70,7 @@ public class ConsulConfigDataLocationResolverTests {
 		List<ConsulConfigDataResource> locations = testResolveProfileSpecific(location);
 		assertThat(locations).hasSize(4);
 		assertThat(toContexts(locations)).containsExactly("config/application/", "config/application,dev/",
-				"config/testapp/", "config/testapp,dev/");
+	"config/testapp/", "config/testapp,dev/");
 	}
 
 	@Test
@@ -80,20 +80,20 @@ public class ConsulConfigDataLocationResolverTests {
 		when(resolverContext.getBinder()).thenReturn(binder);
 		when(resolverContext.getBootstrapContext()).thenReturn(new DefaultBootstrapContext());
 		ConsulProperties properties = createResolver().loadProperties(resolverContext,
-				UriComponentsBuilder.fromUriString("consul://myhost:8502").build());
+	UriComponentsBuilder.fromUriString("consul://myhost:8502").build());
 		assertThat(properties.getHost()).isEqualTo("myhost");
 		assertThat(properties.getPort()).isEqualTo(8502);
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "consul.token", "CONSUL_TOKEN", "spring.cloud.consul.token", "SPRING_CLOUD_CONSUL_TOKEN",
-			"spring.cloud.consul.config.acl-token" })
+	@ValueSource(strings = {"consul.token", "CONSUL_TOKEN", "spring.cloud.consul.token", "SPRING_CLOUD_CONSUL_TOKEN",
+"spring.cloud.consul.config.acl-token"})
 	public void testLoadConfigProperties(String property) {
 		MockEnvironment mockEnvironment = new MockEnvironment();
 		String tokenValue = "mytoken";
 		if (property.contains("_")) {
 			SystemEnvironmentPropertySource envPS = new SystemEnvironmentPropertySource("mocksysenv",
-					Collections.singletonMap(property, tokenValue));
+		Collections.singletonMap(property, tokenValue));
 			mockEnvironment.getPropertySources().addLast(envPS);
 		}
 		else {
@@ -125,7 +125,7 @@ public class ConsulConfigDataLocationResolverTests {
 
 	private ConsulConfigDataLocationResolver createResolver() {
 		return new ConsulConfigDataLocationResolver(
-				destination -> LogFactory.getLog(ConsulConfigDataLocationResolver.class)) {
+	destination -> LogFactory.getLog(ConsulConfigDataLocationResolver.class)) {
 			@Override
 			public <T> void registerBean(ConfigDataLocationResolverContext context, Class<T> type, T instance) {
 				// do nothing
@@ -133,13 +133,13 @@ public class ConsulConfigDataLocationResolverTests {
 
 			@Override
 			protected <T> void registerBean(ConfigDataLocationResolverContext context, Class<T> type,
-					InstanceSupplier<T> supplier) {
+		InstanceSupplier<T> supplier) {
 				// do nothing
 			}
 
 			@Override
 			protected <T> void registerAndPromoteBean(ConfigDataLocationResolverContext context, Class<T> type,
-					InstanceSupplier<T> supplier) {
+		InstanceSupplier<T> supplier) {
 				// do nothing
 			}
 		};

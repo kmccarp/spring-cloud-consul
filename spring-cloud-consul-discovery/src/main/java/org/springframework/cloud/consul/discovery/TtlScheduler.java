@@ -62,14 +62,14 @@ public class TtlScheduler {
 	private ApplicationStatusProvider applicationStatusProvider;
 
 	public TtlScheduler(HeartbeatProperties heartbeatProperties, ConsulDiscoveryProperties discoveryProperties,
-			ConsulClient client, ReregistrationPredicate reregistrationPredicate,
-			ObjectProvider<ApplicationStatusProvider> applicationStatusProviderFactory) {
+ConsulClient client, ReregistrationPredicate reregistrationPredicate,
+ObjectProvider<ApplicationStatusProvider> applicationStatusProviderFactory) {
 		this.heartbeatProperties = heartbeatProperties;
 		this.discoveryProperties = discoveryProperties;
 		this.client = client;
 		this.reregistrationPredicate = reregistrationPredicate;
 		this.applicationStatusProvider = applicationStatusProviderFactory
-				.getIfAvailable(() -> () -> CheckStatus.PASSING);
+	.getIfAvailable(() -> () -> CheckStatus.PASSING);
 	}
 
 	public void add(final NewService service) {
@@ -83,8 +83,8 @@ public class TtlScheduler {
 	 */
 	public void add(String instanceId) {
 		ScheduledFuture task = this.scheduler.scheduleAtFixedRate(
-				new ConsulHeartbeatTask(instanceId, this, () -> applicationStatusProvider.currentStatus()),
-				this.heartbeatProperties.computeHeartbeatInterval().toMillis());
+	new ConsulHeartbeatTask(instanceId, this, () -> applicationStatusProvider.currentStatus()),
+	this.heartbeatProperties.computeHeartbeatInterval().toMillis());
 		ScheduledFuture previousTask = this.serviceHeartbeats.put(instanceId, task);
 		if (previousTask != null) {
 			previousTask.cancel(true);
@@ -129,17 +129,17 @@ public class TtlScheduler {
 			switch (status) {
 				case PASSING:
 					possiblyReregisterIfFails(() -> client.agentCheckPass(checkId, null,
-							this.ttlScheduler.discoveryProperties.getAclToken()));
+				this.ttlScheduler.discoveryProperties.getAclToken()));
 					logHeartbeatSent(status);
 					break;
 				case WARNING:
 					possiblyReregisterIfFails(() -> client.agentCheckWarn(checkId, null,
-							this.ttlScheduler.discoveryProperties.getAclToken()));
+				this.ttlScheduler.discoveryProperties.getAclToken()));
 					logHeartbeatSent(status);
 					break;
 				case CRITICAL:
 					possiblyReregisterIfFails(() -> client.agentCheckFail(checkId, null,
-							this.ttlScheduler.discoveryProperties.getAclToken()));
+				this.ttlScheduler.discoveryProperties.getAclToken()));
 					logHeartbeatSent(status);
 					break;
 				default:
@@ -157,7 +157,7 @@ public class TtlScheduler {
 			}
 			catch (OperationException e) {
 				if (this.ttlScheduler.heartbeatProperties.isReregisterServiceOnFailure()
-						&& this.ttlScheduler.reregistrationPredicate.isEligible(e)) {
+			&& this.ttlScheduler.reregistrationPredicate.isEligible(e)) {
 					log.warn(e.getMessage());
 					NewService registeredService = this.ttlScheduler.registeredServices.get(this.serviceId);
 					if (registeredService != null) {
@@ -165,7 +165,7 @@ public class TtlScheduler {
 							log.info("Re-register " + registeredService);
 						}
 						this.ttlScheduler.client.agentServiceRegister(registeredService,
-								this.ttlScheduler.discoveryProperties.getAclToken());
+					this.ttlScheduler.discoveryProperties.getAclToken());
 					}
 					else {
 						log.warn("The service to re-register is not found.");

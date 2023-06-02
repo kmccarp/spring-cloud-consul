@@ -57,7 +57,7 @@ public class ConsulSendingHandler extends AbstractMessageHandler {
 		// TODO: support headers
 		// TODO: support consul event filters: NodeFilter, ServiceFilter, TagFilter
 		Response<Event> event = this.consul.eventFire(this.eventName, (String) payload, new EventParams(),
-				QueryParams.DEFAULT);
+	QueryParams.DEFAULT);
 		// TODO: return event?
 	}
 

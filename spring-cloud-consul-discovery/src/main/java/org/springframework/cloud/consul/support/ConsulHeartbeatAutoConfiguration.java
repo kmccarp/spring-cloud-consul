@@ -49,8 +49,8 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnConsulEnabled
 @ConditionalOnProperty("spring.cloud.consul.discovery.heartbeat.enabled")
 @ConditionalOnDiscoveryEnabled
-@AutoConfigureBefore({ ConsulServiceRegistryAutoConfiguration.class })
-@AutoConfigureAfter({ ConsulDiscoveryClientConfiguration.class })
+@AutoConfigureBefore({ConsulServiceRegistryAutoConfiguration.class})
+@AutoConfigureAfter({ConsulDiscoveryClientConfiguration.class})
 public class ConsulHeartbeatAutoConfiguration {
 
 	@Bean
@@ -62,11 +62,11 @@ public class ConsulHeartbeatAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public TtlScheduler ttlScheduler(HeartbeatProperties heartbeatProperties,
-			ConsulDiscoveryProperties discoveryProperties, ConsulClient consulClient,
-			ReregistrationPredicate reRegistrationPredicate,
-			ObjectProvider<ApplicationStatusProvider> applicationStatusProvider) {
+ConsulDiscoveryProperties discoveryProperties, ConsulClient consulClient,
+ReregistrationPredicate reRegistrationPredicate,
+ObjectProvider<ApplicationStatusProvider> applicationStatusProvider) {
 		return new TtlScheduler(heartbeatProperties, discoveryProperties, consulClient, reRegistrationPredicate,
-				applicationStatusProvider);
+	applicationStatusProvider);
 	}
 
 	@Bean
@@ -78,14 +78,14 @@ public class ConsulHeartbeatAutoConfiguration {
 	@Configuration(proxyBeanMethods = false)
 	@ConditionalOnClass(HealthEndpoint.class)
 	@ConditionalOnProperty(value = "spring.cloud.consul.discovery.heartbeat.use-actuator-health", havingValue = "true",
-			matchIfMissing = true)
+matchIfMissing = true)
 	static class ActuatorBasedApplicationStatusProviderConfig {
 
 		@Bean
 		@ConditionalOnBean(HealthEndpoint.class)
 		@ConditionalOnMissingBean
 		public ApplicationStatusProvider actuatorHealthStatusProvider(HealthEndpoint healthEndpoint,
-				HeartbeatProperties heartbeatProperties) {
+	HeartbeatProperties heartbeatProperties) {
 			return new ActuatorHealthApplicationStatusProvider(healthEndpoint, heartbeatProperties);
 		}
 

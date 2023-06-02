@@ -53,7 +53,7 @@ public class ConsulServiceRegistry implements ServiceRegistry<ConsulRegistration
 	private final HeartbeatProperties heartbeatProperties;
 
 	public ConsulServiceRegistry(ConsulClient client, ConsulDiscoveryProperties properties, TtlScheduler ttlScheduler,
-			HeartbeatProperties heartbeatProperties) {
+HeartbeatProperties heartbeatProperties) {
 		this.client = client;
 		this.properties = properties;
 		this.ttlScheduler = ttlScheduler;
@@ -67,7 +67,7 @@ public class ConsulServiceRegistry implements ServiceRegistry<ConsulRegistration
 			this.client.agentServiceRegister(reg.getService(), this.properties.getAclToken());
 			NewService service = reg.getService();
 			if (this.heartbeatProperties.isEnabled() && this.ttlScheduler != null && service.getCheck() != null
-					&& service.getCheck().getTtl() != null) {
+		&& service.getCheck().getTtl() != null) {
 				this.ttlScheduler.add(reg.getService());
 			}
 		}
@@ -114,7 +114,7 @@ public class ConsulServiceRegistry implements ServiceRegistry<ConsulRegistration
 	public Object getStatus(ConsulRegistration registration) {
 		String serviceId = registration.getServiceId();
 		Response<List<Check>> response = this.client.getHealthChecksForService(serviceId,
-				HealthChecksForServiceRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
+	HealthChecksForServiceRequest.newBuilder().setQueryParams(QueryParams.DEFAULT).build());
 		List<Check> checks = response.getValue();
 
 		for (Check check : checks) {

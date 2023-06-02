@@ -41,7 +41,7 @@ public class ConsulBinder extends AbstractBinder<MessageChannel, ConsumerPropert
 
 	@Override
 	protected Binding<MessageChannel> doBindConsumer(String name, String group, MessageChannel inputChannel,
-			ConsumerProperties properties) {
+ConsumerProperties properties) {
 		ConsulInboundMessageProducer messageProducer = new ConsulInboundMessageProducer(this.eventService);
 		messageProducer.setOutputChannel(inputChannel);
 		messageProducer.setBeanFactory(this.getBeanFactory());
@@ -53,7 +53,7 @@ public class ConsulBinder extends AbstractBinder<MessageChannel, ConsumerPropert
 
 	@Override
 	protected Binding<MessageChannel> doBindProducer(String name, MessageChannel channel,
-			ProducerProperties properties) {
+ProducerProperties properties) {
 		Assert.isInstanceOf(SubscribableChannel.class, channel);
 
 		this.logger.debug("Binding Consul client to eventName " + name);

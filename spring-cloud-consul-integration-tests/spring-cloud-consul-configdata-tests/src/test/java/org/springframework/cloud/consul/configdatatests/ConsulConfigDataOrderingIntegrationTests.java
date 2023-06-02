@@ -38,11 +38,9 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@SpringBootTest(classes = ConsulConfigDataApplication.class,
-		properties = { "spring.application.name=" + ConsulConfigDataOrderingIntegrationTests.APP_NAME,
+@SpringBootTest(classes = ConsulConfigDataApplication.class,properties = {"spring.application.name=" + ConsulConfigDataOrderingIntegrationTests.APP_NAME,
 				"spring.config.name=orderingtest", "spring.profiles.active=dev",
-				"management.endpoints.web.exposure.include=*", "management.endpoint.env.show-values=ALWAYS" },
-		webEnvironment = RANDOM_PORT)
+				"management.endpoints.web.exposure.include=*", "management.endpoint.env.show-values=ALWAYS"},webEnvironment = RANDOM_PORT)
 public class ConsulConfigDataOrderingIntegrationTests {
 
 	private static final String BASE_PATH = new WebEndpointProperties().getBasePath();
@@ -84,11 +82,11 @@ public class ConsulConfigDataOrderingIntegrationTests {
 	}
 
 	@Test
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public void contextLoads() {
 		Integer port = env.getProperty("local.server.port", Integer.class);
 		ResponseEntity<Map> response = new TestRestTemplate()
-				.getForEntity("http://localhost:" + port + BASE_PATH + "/env/my.prop", Map.class);
+	.getForEntity("http://localhost:" + port + BASE_PATH + "/env/my.prop", Map.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 		Map res = response.getBody();
 		assertThat(res).containsKey("propertySources");

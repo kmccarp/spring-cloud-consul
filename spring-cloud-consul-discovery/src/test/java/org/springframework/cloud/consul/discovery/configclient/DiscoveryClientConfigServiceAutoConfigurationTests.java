@@ -41,7 +41,7 @@ import static org.mockito.Mockito.verify;
  * @author Dave Syer
  */
 @RunWith(ModifiedClassPathRunner.class)
-@ClassPathExclusions({ "spring-retry-*.jar", "spring-boot-starter-aop-*.jar" })
+@ClassPathExclusions({"spring-retry-*.jar", "spring-boot-starter-aop-*.jar"})
 public class DiscoveryClientConfigServiceAutoConfigurationTests {
 
 	private ConfigurableApplicationContext context;
@@ -68,12 +68,12 @@ public class DiscoveryClientConfigServiceAutoConfigurationTests {
 		Integer port = ConsulTestcontainers.getPort();
 		String host = ConsulTestcontainers.getHost();
 		setup("server.port=0", "spring.cloud.config.discovery.enabled=true", "spring.cloud.consul.port=" + port,
-				"spring.cloud.consul.host=" + host, "logging.level.org.springframework.cloud.config.client=DEBUG",
-				"spring.cloud.consul.discovery.catalog-services-watch.enabled=false",
-				"spring.cloud.consul.discovery.test.enabled:true",
-				"spring.application.name=discoveryclientconfigservicetest", "spring.jmx.enabled=false",
-				"spring.cloud.consul.discovery.port:7001", "spring.cloud.consul.discovery.hostname:foo",
-				"spring.cloud.config.discovery.service-id:configserver");
+	"spring.cloud.consul.host=" + host, "logging.level.org.springframework.cloud.config.client=DEBUG",
+	"spring.cloud.consul.discovery.catalog-services-watch.enabled=false",
+	"spring.cloud.consul.discovery.test.enabled:true",
+	"spring.application.name=discoveryclientconfigservicetest", "spring.jmx.enabled=false",
+	"spring.cloud.consul.discovery.port:7001", "spring.cloud.consul.discovery.hostname:foo",
+	"spring.cloud.config.discovery.service-id:configserver");
 
 		assertThat(this.context.getBeanNamesForType(ConsulConfigServerAutoConfiguration.class).length).isEqualTo(1);
 		ConsulDiscoveryClient client = this.context.getParent().getBean(ConsulDiscoveryClient.class);
