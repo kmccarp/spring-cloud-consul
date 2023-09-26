@@ -59,7 +59,7 @@ public class TtlScheduler {
 
 	private final Map<String, NewService> registeredServices = new ConcurrentHashMap<>();
 
-	private ApplicationStatusProvider applicationStatusProvider;
+    private final ApplicationStatusProvider applicationStatusProvider;
 
 	public TtlScheduler(HeartbeatProperties heartbeatProperties, ConsulDiscoveryProperties discoveryProperties,
 			ConsulClient client, ReregistrationPredicate reregistrationPredicate,
@@ -83,7 +83,7 @@ public class TtlScheduler {
 	 */
 	public void add(String instanceId) {
 		ScheduledFuture task = this.scheduler.scheduleAtFixedRate(
-				new ConsulHeartbeatTask(instanceId, this, () -> applicationStatusProvider.currentStatus()),
+				new ConsulHeartbeatTask(instanceId, this, applicationStatusProvider::currentStatus),
 				this.heartbeatProperties.computeHeartbeatInterval().toMillis());
 		ScheduledFuture previousTask = this.serviceHeartbeats.put(instanceId, task);
 		if (previousTask != null) {
