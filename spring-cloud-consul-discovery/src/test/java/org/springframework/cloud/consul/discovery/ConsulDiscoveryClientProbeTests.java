@@ -55,7 +55,7 @@ public class ConsulDiscoveryClientProbeTests {
 	@Test
 	public void probeFails() {
 		when(consulClient.getStatusLeader()).thenThrow(new OperationException(5150, "5150", "No leader"));
-		assertThatThrownBy(() -> discoveryClient.probe()).isInstanceOf(OperationException.class)
+		assertThatThrownBy(discoveryClient::probe).isInstanceOf(OperationException.class)
 				.hasMessageContaining("No leader");
 		verify(consulClient).getStatusLeader();
 	}
