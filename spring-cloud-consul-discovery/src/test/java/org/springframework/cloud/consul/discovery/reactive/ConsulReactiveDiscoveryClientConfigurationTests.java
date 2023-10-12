@@ -34,9 +34,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 class ConsulReactiveDiscoveryClientConfigurationTests {
 
-	private ApplicationContextRunner contextRunner = new ApplicationContextRunner().withConfiguration(
-			AutoConfigurations.of(UtilAutoConfiguration.class, ReactiveCommonsClientAutoConfiguration.class,
-					ConsulAutoConfiguration.class, ConsulReactiveDiscoveryClientConfiguration.class));
+    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner().withConfiguration(
+            AutoConfigurations.of(UtilAutoConfiguration.class, ReactiveCommonsClientAutoConfiguration.class,
+                    ConsulAutoConfiguration.class, ConsulReactiveDiscoveryClientConfiguration.class));
 
 	@Test
 	public void shouldWorkWithDefaults() {
